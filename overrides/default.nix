@@ -963,6 +963,10 @@ lib.composeManyExtensions [
         }
       );
 
+      libclang = super.libclang.overridePythonAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [ self.setuptools ];
+      });
+
       libvirt-python = super.libvirt-python.overridePythonAttrs ({ nativeBuildInputs ? [ ], ... }: {
         nativeBuildInputs = nativeBuildInputs ++ [ pkg-config ];
         propagatedBuildInputs = [ pkgs.libvirt ];
@@ -1776,6 +1780,10 @@ lib.composeManyExtensions [
         }
       );
 
+      pyparsing = super.pyparsing.overridePythonAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [ self.setuptools ];
+      });
+
       pyproj = super.pyproj.overridePythonAttrs (
         old: {
           PROJ_DIR = "${pkgs.proj}";
@@ -2317,6 +2325,10 @@ lib.composeManyExtensions [
         nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
           self.pytest-runner
         ];
+      });
+
+      typing-extensions = super.typing-extensions.overridePythonAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [ self.setuptools ];
       });
 
       urwidtrees = super.urwidtrees.overridePythonAttrs (
